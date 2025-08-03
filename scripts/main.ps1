@@ -188,35 +188,38 @@ try {
     }
 
     if ($sync.WPFPrepareDC) {
-    $sync.WPFPrepareDC.Add_Click({
-        try {
-            $targetVersion = $sync.WPFDCTargetVersion.SelectedItem.Content
-            Invoke-DomainControllerUpgradePrep -TargetWindowsVersion $targetVersion
-        } catch {
-            Write-Logger "Error in DC Prep: $($_.Exception.Message)" "ERROR"
-        }
-    })
-}
+        $sync.WPFPrepareDC.Add_Click({
+                try {
+                    $targetVersion = $sync.WPFDCTargetVersion.SelectedItem.Content
+                    Invoke-DomainControllerUpgradePrep -TargetWindowsVersion $targetVersion
+                }
+                catch {
+                    Write-Logger "Error in DC Prep: $($_.Exception.Message)" "ERROR"
+                }
+            })
+    }
 
-if ($sync.WPFAnalyzeFSMO) {
-    $sync.WPFAnalyzeFSMO.Add_Click({
-        try {
-            Invoke-FSMORoleAnalysis
-        } catch {
-            Write-Logger "Error in FSMO Analysis: $($_.Exception.Message)" "ERROR"
-        }
-    })
-}
+    if ($sync.WPFAnalyzeFSMO) {
+        $sync.WPFAnalyzeFSMO.Add_Click({
+                try {
+                    Invoke-FSMORoleAnalysis
+                }
+                catch {
+                    Write-Logger "Error in FSMO Analysis: $($_.Exception.Message)" "ERROR"
+                }
+            })
+    }
 
-if ($sync.WPFCheckReplication) {
-    $sync.WPFCheckReplication.Add_Click({
-        try {
-            Invoke-ADReplicationCheck
-        } catch {
-            Write-Logger "Error in Replication Check: $($_.Exception.Message)" "ERROR"
-        }
-    })
-}
+    if ($sync.WPFCheckReplication) {
+        $sync.WPFCheckReplication.Add_Click({
+                try {
+                    Invoke-ADReplicationCheck
+                }
+                catch {
+                    Write-Logger "Error in Replication Check: $($_.Exception.Message)" "ERROR"
+                }
+            })
+    }
 
     if ($sync.NavCloning) {
         $sync.NavCloning.Add_Click({
@@ -392,6 +395,43 @@ if ($sync.WPFCheckReplication) {
                 }
                 catch {
                     Write-Logger "Error in Upgrade Apps: $($_.Exception.Message)" "ERROR"
+                }
+            })
+    }
+
+# About page event handlers
+    if ($sync.ViewWiki) {
+        $sync.ViewWiki.Add_Click({
+                try {
+                    Write-Logger "Opening WDCA documentation" "INFO"
+                    Start-Process "https://github.com/Tobayashi-san/WDCA" -ErrorAction Stop
+                }
+                catch {
+                    Write-Logger "Error opening documentation: $($_.Exception.Message)" "ERROR"
+                    [System.Windows.MessageBox]::Show(
+                        "Could not open documentation. Please visit:`nhttps://github.com/Tobayashi-san/WDCA/wiki",
+                        "WDCA - Documentation",
+                        [System.Windows.MessageBoxButton]::OK,
+                        [System.Windows.MessageBoxImage]::Information
+                    )
+                }
+            })
+    }
+
+    if ($sync.ReportIssue) {
+        $sync.ReportIssue.Add_Click({
+                try {
+                    Write-Logger "Opening issue reporting page" "INFO"
+                    Start-Process "https://github.com/Tobayashi-san/WDCA/issues/new" -ErrorAction Stop
+                }
+                catch {
+                    Write-Logger "Error opening issue page: $($_.Exception.Message)" "ERROR"
+                    [System.Windows.MessageBox]::Show(
+                        "Could not open issue reporting page. Please visit:`nhttps://github.com/Tobayashi-san/WDCA/issues/new",
+                        "WDCA - Report Issue",
+                        [System.Windows.MessageBoxButton]::OK,
+                        [System.Windows.MessageBoxImage]::Information
+                    )
                 }
             })
     }

@@ -1122,11 +1122,11 @@
                                                                                    Margin="0,0,0,16"/>
 
                                                                         <StackPanel Orientation="Horizontal">
-                                                                                <Button Content="View Documentation"
+                                                                                <Button Name="ViewWiki"
+                                                                                        Content="Documentation"
                                                                                         Style="{StaticResource FluentButton}"/>
-                                                                                <Button Content="Report Issue"
-                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
-                                                                                <Button Content="Check for Updates"
+                                                                                <Button Name="ReportIssue"
+                                                                                        Content="Report Issue"
                                                                                         Style="{StaticResource FluentButtonSecondary}"/>
                                                                         </StackPanel>
                                                                 </StackPanel>
