@@ -41,11 +41,11 @@ function Invoke-DomainControllerUpgradePrep {
 Prepare Domain Controller for Windows Server $TargetWindowsVersion In-Place Upgrade?
 
   CRITICAL WARNINGS:
-• Domain Controller upgrade affects entire AD environment
-• Forest/Domain Prep may be required
-• FSMO role holders need special consideration
-• Replication must be healthy before upgrade
-• Extended downtime expected
+- Domain Controller upgrade affects entire AD environment
+- Forest/Domain Prep may be required
+- FSMO role holders need special consideration
+- Replication must be healthy before upgrade
+- Extended downtime expected
 
 Continue with DC upgrade preparation?
 "@
@@ -446,7 +446,7 @@ Continue with DC upgrade preparation?
                 if ($recommendations.Count -gt 0) {
                     $results += "=== RECOMMENDATIONS ==="
                     foreach ($recommendation in $recommendations) {
-                        $results += "• $recommendation"
+                        $results += "- $recommendation"
                     }
                     $results += ""
                 }

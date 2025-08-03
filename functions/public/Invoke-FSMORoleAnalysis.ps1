@@ -196,7 +196,7 @@ function Invoke-ADReplicationCheck {
                             $results += "Failure: $($failure.Server) - $($failure.LastError)"
                         }
                     } else {
-                        $results += "✓ No active replication failures"
+                        $results += "No active replication failures"
                     }
                 } catch {
                     $results += "Could not check replication failures: $($_.Exception.Message)"
@@ -216,7 +216,7 @@ function Invoke-ADReplicationCheck {
                             $results += "... and $($queue.Count - 5) more operations"
                         }
                     } else {
-                        $results += "✓ No operations in replication queue"
+                        $results += "No operations in replication queue"
                     }
                 } catch {
                     $results += "Could not check replication queue: $($_.Exception.Message)"
