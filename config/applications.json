@@ -1,0 +1,163 @@
+﻿{
+    "1password": {
+        "category": "Utilities",
+        "content": "1Password",
+        "description": "1Password is a password manager that allows you to store and manage your passwords securely.",
+        "link": "https://1password.com/",
+        "winget": "AgileBits.1Password"
+    },
+    "adobe": {
+        "category": "Document",
+        "content": "Adobe Acrobat Reader",
+        "description": "Adobe Acrobat Reader is a free PDF viewer with essential features for viewing, printing, and annotating PDF documents.",
+        "link": "https://www.adobe.com/acrobat/pdf-reader.html",
+        "winget": "Adobe.Acrobat.Reader.64-bit"
+    },
+    "advancedip": {
+        "category": "Pro Tools",
+        "content": "Advanced IP Scanner",
+        "description": "Advanced IP Scanner is a fast and easy-to-use network scanner. It is designed to analyze LAN networks and provides information about connected devices.",
+        "link": "https://www.advanced-ip-scanner.com/",
+        "winget": "Famatech.AdvancedIPScanner"
+    },
+    "brave": {
+        "category": "Browsers",
+        "content": "Brave",
+        "description": "Brave is a privacy-focused web browser that blocks ads and trackers, offering a faster and safer browsing experience.",
+        "link": "https://www.brave.com",
+        "winget": "Brave.Brave"
+    },
+    "chrome": {
+        "category": "Browsers",
+        "content": "Chrome",
+        "description": "Google Chrome is a widely used web browser known for its speed, simplicity, and seamless integration with Google services.",
+        "link": "https://www.google.com/chrome/",
+        "winget": "Google.Chrome"
+    },
+    "firefox": {
+        "category": "Browsers",
+        "content": "Firefox",
+        "description": "Mozilla Firefox is an open-source web browser known for its customization options, privacy features, and extensions.",
+        "link": "https://www.mozilla.org/en-US/firefox/new/",
+        "winget": "Mozilla.Firefox"
+    },
+    "crystaldiskinfo": {
+        "category": "Utilities",
+        "content": "Crystal Disk Info",
+        "description": "Crystal Disk Info is a disk health monitoring tool that provides information about the status and performance of hard drives. It helps users anticipate potential issues and monitor drive health.",
+        "link": "https://crystalmark.info/en/software/crystaldiskinfo/",
+        "winget": "CrystalDewWorld.CrystalDiskInfo"
+    },
+    "crystaldiskmark": {
+        "category": "Utilities",
+        "content": "Crystal Disk Mark",
+        "description": "Crystal Disk Mark is a disk benchmarking tool that measures the read and write speeds of storage devices. It helps users assess the performance of their hard drives and SSDs.",
+        "link": "https://crystalmark.info/en/software/crystaldiskmark/",
+        "winget": "CrystalDewWorld.CrystalDiskMark"
+    },
+    "dotnet3": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 3.1",
+        "description": ".NET Desktop Runtime 3.1 is a runtime environment required for running applications developed with .NET Core 3.1.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/3.1",
+        "winget": "Microsoft.DotNet.DesktopRuntime.3_1"
+    },
+    "dotnet5": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 5",
+        "description": ".NET Desktop Runtime 5 is a runtime environment required for running applications developed with .NET 5.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/5.0",
+        "winget": "Microsoft.DotNet.DesktopRuntime.5"
+    },
+    "dotnet6": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 6",
+        "description": ".NET Desktop Runtime 6 is a runtime environment required for running applications developed with .NET 6.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/6.0",
+        "winget": "Microsoft.DotNet.DesktopRuntime.6"
+    },
+    "dotnet7": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 7",
+        "description": ".NET Desktop Runtime 7 is a runtime environment required for running applications developed with .NET 7.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/7.0",
+        "winget": "Microsoft.DotNet.DesktopRuntime.7"
+    },
+    "dotnet8": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 8",
+        "description": ".NET Desktop Runtime 8 is a runtime environment required for running applications developed with .NET 8.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/8.0",
+        "winget": "Microsoft.DotNet.DesktopRuntime.8"
+    },
+    "dotnet9": {
+        "category": "Microsoft Tools",
+        "content": ".NET Desktop Runtime 9",
+        "description": ".NET Desktop Runtime 9 is a runtime environment required for running applications developed with .NET 9.",
+        "link": "https://dotnet.microsoft.com/download/dotnet/9.0",
+        "winget": "Microsoft.DotNet.DesktopRuntime.9"
+    },
+    "hwinfo": {
+        "category": "Utilities",
+        "content": "HWiNFO",
+        "description": "HWiNFO provides comprehensive hardware information and diagnostics for Windows.",
+        "link": "https://www.hwinfo.com/",
+        "winget": "REALiX.HWiNFO"
+    },
+    "hwmonitor": {
+        "category": "Utilities",
+        "content": "HWMonitor",
+        "description": "HWMonitor is a hardware monitoring program that reads PC systems main health sensors.",
+        "link": "https://www.cpuid.com/softwares/hwmonitor.html",
+        "winget": "CPUID.HWMonitor"
+    },
+    "OpenVPN": {
+        "category": "Pro Tools",
+        "content": "OpenVPN Connect",
+        "description": "OpenVPN Connect is an open-source VPN client that allows you to connect securely to a VPN server. It provides a secure and encrypted connection for protecting your online privacy.",
+        "link": "https://openvpn.net/",
+        "winget": "OpenVPNTechnologies.OpenVPNConnect"
+    },
+    "rufus": {
+        "category": "Utilities",
+        "content": "Rufus Imager",
+        "description": "Rufus is a utility that helps format and create bootable USB drives, such as USB keys or pen drives.",
+        "link": "https://rufus.ie/",
+        "winget": "Rufus.Rufus"
+    },
+    "treesize": {
+        "category": "Utilities",
+        "content": "TreeSize Free",
+        "description": "TreeSize Free is a disk space manager that helps you analyze and visualize the space usage on your drives.",
+        "link": "https://www.jam-software.com/treesize_free/",
+        "winget": "JAMSoftware.TreeSize.Free"
+    },
+    "wingetui": {
+        "category": "Utilities",
+        "content": "UniGetUI",
+        "description": "UniGetUI is a GUI for Winget, Chocolatey, and other Windows CLI package managers.",
+        "link": "https://www.marticliment.com/wingetui/",
+        "winget": "MartiCliment.UniGetUI"
+    },
+    "winscp": {
+        "category": "Pro Tools",
+        "content": "WinSCP",
+        "description": "WinSCP is a popular open-source SFTP, FTP, and SCP client for Windows. It allows secure file transfers between a local and a remote computer.",
+        "link": "https://winscp.net/",
+        "winget": "WinSCP.WinSCP"
+    },
+    "wireguard": {
+        "category": "Pro Tools",
+        "content": "WireGuard",
+        "description": "WireGuard is a fast and modern VPN (Virtual Private Network) protocol. It aims to be simpler and more efficient than other VPN protocols, providing secure and reliable connections.",
+        "link": "https://www.wireguard.com/",
+        "winget": "WireGuard.WireGuard"
+    },
+    "royalts": {
+        "category": "Pro Tools",
+        "content": "Royal TS V7",
+        "description": "Royal TS is a powerful remote connection manager for system administrators and IT professionals.",
+        "link": "https://www.royalapps.com/ts/",
+        "winget": "RoyalApps.RoyalTS.7"
+    }
+}
