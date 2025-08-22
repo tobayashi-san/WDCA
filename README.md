@@ -4,104 +4,135 @@ A modern PowerShell-based utility with WPF interface for streamlining Windows sy
 
 ## 🚀 Quick Start
 
+### One-Line Install & Run
+```powershell
+irm "tobayashi-san.github.io/WDCA/start" | iex
+```
+
+This command will:
+- ✅ Automatically request administrator privileges
+- ✅ Download the latest WDCA directly from GitHub
+- ✅ Run without requiring ExecutionPolicy changes
+- ✅ Work in Windows Terminal, PowerShell, or Command Prompt
+
+### Alternative Installation Methods
+
+#### Local Development
 ```powershell
 # Clone or download the repository
-cd C:\Path\To\WDCA
+git clone https://github.com/Tobayashi-san/WDCA.git
+cd WDCA
 
 # Compile and run
 .\Compile.ps1 -Run
 ```
 
-**Requirements**: Windows 10/11, PowerShell 5.1+, Administrator privileges, WinGet
+#### Direct Download
+```powershell
+# Download and run compiled version
+Invoke-WebRequest -Uri "https://tobayashi-san.github.io/WDCA/wdca.ps1" -OutFile "wdca.ps1"
+.\wdca.ps1
+```
 
-## ✨ Key Features
 
-- **📦 Application Management**: Mass install applications via WinGet with real-time terminal output
-- **⚙️ System Configuration**: Network setup (Static IP/DHCP), Remote Desktop, IPv6 management
-- **🔧 System Diagnostics**: DISM, SFC, CHKDSK scans in dedicated terminal windows
-- **🔄 Update Management**: Application updates, Domain Controller upgrade preparation
-- **💿 System Imaging**: Pre-clone cleanup, automated Sysprep with configurable options
+## Architecture
 
-## 🏗️ Architecture
+### Configuration-Driven Design
+All features are defined in JSON configuration files, enabling easy extension without code changes:
 
-### Project Structure
 ```
 WDCA/
 ├── config/           # JSON configuration files
-├── functions/        # PowerShell functions (private/public)
+│   ├── applications.json    # Software packages and WinGet IDs
+│   └── roles.json          # Server role configurations
+├── functions/        # PowerShell functions
+│   ├── private/            # Internal helper functions
+│   └── public/             # Main feature functions
 ├── scripts/          # Core execution scripts
 ├── xaml/            # WPF interface definitions
+├── tools/           # Build and development tools
 ├── Compile.ps1      # Build script
 └── wdca.ps1        # Compiled output
 ```
 
-### Configuration-Driven Design
-All features are defined in JSON files, allowing easy extension without code changes:
-- `applications.json` - Software packages and WinGet IDs
-- `roles.json` - Server role configurations
-- `troubleshooting.json` - Diagnostic tool parameters
-
-## 💡 Terminal-Based Operations
-
-WDCA executes long-running operations in dedicated terminal windows for:
-- **Real-time Progress**: Live output and detailed results
-- **Responsive UI**: Main interface remains interactive
-- **Complete Logging**: All operations logged to temp files
-- **Independent Execution**: Each operation runs in its own context
-
-## 🔧 Usage Examples
-
-**Install Applications**:
-1. Navigate to Applications tab → Select apps → Install Selected Applications
-2. Monitor progress in dedicated terminal window
-
-**Network Configuration**:
-1. System Setup tab → Configure Static IP/DHCP → Apply Network Configuration
-
-**System Diagnostics**:
-1. Troubleshooting tab → Run All Diagnostics (DISM → SFC → CHKDSK sequence)
-
-**System Imaging**:
-1. Cloning tab → Run System Cleanup → Configure Sysprep → Run Sysprep
-
 ## 🛠️ Development
 
-### Building
+### Building from Source
 ```powershell
-.\Compile.ps1              # Standard build
-.\Compile.ps1 -Debug       # Debug build with extra logging
-.\Compile.ps1 -Run         # Build and run immediately
+# Standard build
+.\Compile.ps1
+
+# Debug build with extra logging
+.\Compile.ps1 -Debug
+
+# Build and run immediately
+.\Compile.ps1 -Run
 ```
 
-### Adding Features
-1. Create JSON configuration (if needed)
-2. Add PowerShell function in `functions/public/`
-3. Update XAML interface (if needed)
-4. Register event handlers in `scripts/main.ps1`
+### Adding New Features
+1. **Add Configuration**: Create or update JSON files in `config/`
+2. **Create Functions**: Add PowerShell functions in `functions/public/`
+3. **Update Interface**: Modify XAML in `xaml/inputXML.xaml` if needed
+4. **Register Events**: Add event handlers in `scripts/main.ps1`
+5. **Build & Test**: Use `Compile.ps1` to build and test
 
-### Code Quality
-- Automated preprocessing and validation during build
-- PowerShell AST parsing for syntax checking
-- Consistent formatting and cleanup
+## 📋 System Requirements
 
-## 🔐 Security & Features
+### Minimum Requirements
+- **Operating System**: Windows 10 (1903+) or Windows 11
+- **PowerShell**: Version 5.1 or higher (PowerShell 7+ recommended)
+- **Privileges**: Administrator rights required for system modifications
+- **Framework**: .NET Framework 4.5+ (for WPF interface)
 
-- **Auto-elevation**: Requests admin privileges when needed
-- **Safe operations**: Confirmation dialogs for destructive actions
-- **Comprehensive logging**: Multi-level logging (INFO, WARNING, ERROR, DEBUG)
-- **Error handling**: Graceful degradation and detailed error reporting
-- **Async operations**: Thread-safe UI updates and resource cleanup
+### Optional Components
+- **WinGet**: Required for application installation features
+- **Windows Terminal**: Enhanced terminal experience (automatically detected)
+- **Git**: For development and contributing
+
+## 🌐 Network Requirements
+
+### Internet Connectivity
+- **GitHub Access**: For downloading latest version and updates
+- **WinGet Repositories**: For application installations
+- **Microsoft Services**: For Windows updates and tools
+
+### Offline Usage
+- Compiled `wdca.ps1` can run offline (limited functionality)
+- Application installations require internet for WinGet operations
+- System diagnostics and configuration work offline
+
+## 🤝 Contributing
+
+### How to Contribute
+1. **Fork the Repository**: Create your own copy on GitHub
+2. **Create Feature Branch**: `git checkout -b feature/amazing-feature`
+3. **Make Changes**: Add your improvements or fixes
+4. **Test Thoroughly**: Ensure all functionality works as expected
+5. **Submit Pull Request**: Describe your changes and benefits
+
+### Development Guidelines
+- Follow PowerShell best practices and style guidelines
+- Add comprehensive error handling and logging
+- Update documentation for new features
+- Test on multiple Windows versions when possible
+- Consider enterprise environments in design decisions
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+**MIT License** - see [LICENSE](LICENSE) file for details.
+
+This project is open source and free to use, modify, and distribute.
 
 ## 🙏 Acknowledgments
 
-- Inspired by [WinUtil](https://github.com/ChrisTitusTech/winutil) architecture
-- Built for IT professionals managing Windows environments
-- Community-driven development welcome
+- **Inspiration**: [WinUtil](https://github.com/ChrisTitusTech/winutil) by Chris Titus Tech
+- **Community**: Built for IT professionals managing Windows environments
+- **Contributors**: Thanks to all who contribute to making WDCA better
 
 ---
 
-**Note**: WDCA is designed for professional IT environments. Always test in non-production systems before deploying to critical infrastructure.
+**Ready to streamline your Windows deployments?**
+
+```powershell
+irm "tobayashi-san.github.io/WDCA/start" | iex
+```
