@@ -7,7 +7,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
     $processCmd = if (Get-Command wt.exe -ErrorAction SilentlyContinue) { "wt.exe" } else { $powershellcmd }
     
     # Auto-restart with admin rights (KEIN -ExecutionPolicy Bypass nötig!)
-    $command = "irm 'amstutz-informatik.ch/wdca' | iex"
+    $command = "irm 'tobayashi-san.github.io/WDCA/start' | iex"
     
     try {
         if ($processCmd -eq "wt.exe") {
@@ -30,7 +30,7 @@ Write-Host "🚀 WDCA - Windows Deployment & Configuration Assistant" -Foregroun
 Write-Host "Downloading and installing WDCA..." -ForegroundColor Yellow
 
 # Direkter Download vom GitHub (wie ChrisTitus)
-$wdcaUrl = "https://amstutz-informatik.ch/wdca.ps1"
+$wdcaUrl = "https://tobayashi-san.github.io/WDCA//wdca.ps1"
 
 try {
     # Prüfe Internet-Verbindung
