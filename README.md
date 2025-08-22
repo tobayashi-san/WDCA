@@ -13,7 +13,7 @@ This command will:
 - ✅ Automatically request administrator privileges
 - ✅ Download the latest WDCA directly from GitHub
 - ✅ Run without requiring ExecutionPolicy changes
-- ✅ Work in Windows Terminal, PowerShell, or Command Prompt
+- ✅ Work in Windows Terminal or PowerShell
 
 ### Alternative Installation Methods
 
@@ -136,3 +136,4 @@ This project is open source and free to use, modify, and distribute.
 ```powershell
 irm "tobayashi-san.github.io/WDCA/start" | iex
 ```
+
