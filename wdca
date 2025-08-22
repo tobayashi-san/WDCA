@@ -1,0 +1,56 @@
+# Auto-Elevation (wie ChrisTitus)
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Output "WDCA needs to be run as Administrator. Attempting to relaunch."
+    
+    # Detect best PowerShell
+    $powershellcmd = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
+    $processCmd = if (Get-Command wt.exe -ErrorAction SilentlyContinue) { "wt.exe" } else { $powershellcmd }
+    
+    # Auto-restart with admin rights (KEIN -ExecutionPolicy Bypass nötig!)
+    $command = "irm 'amstutz-informatik.ch/wdca' | iex"
+    
+    try {
+        if ($processCmd -eq "wt.exe") {
+            Start-Process $processCmd -ArgumentList "$powershellcmd -Command `"$command`"" -Verb RunAs
+        } else {
+            Start-Process $powershellcmd -ArgumentList "-Command `"$command`"" -Verb RunAs
+        }
+        exit
+    } catch {
+        Write-Error "Failed to restart as administrator"
+        exit 1
+    }
+}
+
+# Hier ist bereits Admin-Modus aktiv
+$Host.UI.RawUI.WindowTitle = "WDCA Web Installer (Admin)"
+Clear-Host
+
+Write-Host "🚀 WDCA - Windows Deployment & Configuration Assistant" -ForegroundColor Cyan
+Write-Host "Downloading and installing WDCA..." -ForegroundColor Yellow
+
+# Direkter Download vom GitHub (wie ChrisTitus)
+$wdcaUrl = "https://amstutz-informatik.ch/wdca.ps1"
+
+try {
+    # Prüfe Internet-Verbindung
+    Test-Connection -ComputerName "github.com" -Count 1 -Quiet | Out-Null
+    
+    # Lade und führe WDCA direkt aus
+    Write-Host "Fetching WDCA from GitHub..." -ForegroundColor Green
+    $wdcaScript = Invoke-RestMethod -Uri $wdcaUrl -UseBasicParsing
+    
+    # DIREKTER START - Kein Filesystem, keine ExecutionPolicy!
+    Write-Host "Starting WDCA..." -ForegroundColor Green
+    Invoke-Expression $wdcaScript
+    
+} catch {
+    Write-Host "❌ Error: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Troubleshooting:" -ForegroundColor Yellow
+    Write-Host "1. Check internet connection" -ForegroundColor Gray
+    Write-Host "2. Verify GitHub access" -ForegroundColor Gray
+    Write-Host "3. Try manual download from GitHub" -ForegroundColor Gray
+    Write-Host ""
+    Read-Host "Press Enter to exit"
+}
