@@ -1,0 +1,1108 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows Deployment and Configuration Assistant"
+        Height="800"
+        Width="1200"
+        MinHeight="700"
+        MinWidth="1000"
+        WindowStartupLocation="CenterScreen"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        Background="#FF202020">
+
+        <Window.Resources>
+                <!-- Modern Fluent Design System Colors -->
+                <SolidColorBrush x:Key="SystemAccentBrush"
+                                 Color="#FF0078D4"/>
+                <SolidColorBrush x:Key="SystemAccentLightBrush"
+                                 Color="#FF429CE3"/>
+                <SolidColorBrush x:Key="SystemAccentDarkBrush"
+                                 Color="#FF005A9E"/>
+                <SolidColorBrush x:Key="CardBackgroundBrush"
+                                 Color="#FF2D2D30"/>
+                <SolidColorBrush x:Key="LayerBackgroundBrush"
+                                 Color="#FF202020"/>
+                <SolidColorBrush x:Key="SurfaceBackgroundBrush"
+                                 Color="#FF1A1A1A"/>
+                <SolidColorBrush x:Key="TextPrimaryBrush"
+                                 Color="#FFFFFFFF"/>
+                <SolidColorBrush x:Key="TextSecondaryBrush"
+                                 Color="#FFE0E0E0"/>
+                <SolidColorBrush x:Key="TextTertiaryBrush"
+                                 Color="#FFB0B0B0"/>
+                <SolidColorBrush x:Key="BorderBrush"
+                                 Color="#FF404040"/>
+                <SolidColorBrush x:Key="HoverBrush"
+                                 Color="#FF3C3C3C"/>
+
+                <!-- Modern Card Style -->
+                <Style x:Key="ModernCard"
+                       TargetType="Border">
+                        <Setter Property="Background"
+                                Value="{StaticResource CardBackgroundBrush}"/>
+                        <Setter Property="CornerRadius"
+                                Value="4"/>
+                        <Setter Property="BorderThickness"
+                                Value="1"/>
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource BorderBrush}"/>
+                        <Setter Property="Margin"
+                                Value="0,0,0,8"/>
+                        <Setter Property="Padding"
+                                Value="12"/>
+                        <Setter Property="Effect">
+                                <Setter.Value>
+                                        <DropShadowEffect Color="Black"
+                                                          BlurRadius="2"
+                                                          ShadowDepth="1"
+                                                          Opacity="0.15"
+                                                          Direction="270"/>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Modern Button Style -->
+                <Style x:Key="FluentButton"
+                       TargetType="Button">
+                        <Setter Property="Background"
+                                Value="{StaticResource SystemAccentBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="BorderThickness"
+                                Value="0"/>
+                        <Setter Property="Padding"
+                                Value="12,8"/>
+                        <Setter Property="Margin"
+                                Value="4,2"/>
+                        <Setter Property="FontSize"
+                                Value="13"/>
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+                        <Setter Property="Cursor"
+                                Value="Hand"/>
+                        <Setter Property="Height"
+                                Value="36"/>
+                        <Setter Property="MinWidth"
+                                Value="120"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                                <Border x:Name="border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="4"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="Background"
+                                                                        Value="{StaticResource SystemAccentLightBrush}"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Secondary Button Style -->
+                <Style x:Key="FluentButtonSecondary"
+                       TargetType="Button"
+                       BasedOn="{StaticResource FluentButton}">
+                        <Setter Property="Background"
+                                Value="Transparent"/>
+                        <Setter Property="BorderThickness"
+                                Value="1"/>
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource BorderBrush}"/>
+                </Style>
+
+                <!-- Success Button Style -->
+                <Style x:Key="FluentButtonSuccess"
+                       TargetType="Button"
+                       BasedOn="{StaticResource FluentButton}">
+                        <Setter Property="Background"
+                                Value="#FF107C10"/>
+                </Style>
+
+                <!-- Warning Button Style -->
+                <Style x:Key="FluentButtonWarning"
+                       TargetType="Button"
+                       BasedOn="{StaticResource FluentButton}">
+                        <Setter Property="Background"
+                                Value="#FFFF8C00"/>
+                </Style>
+
+                <!-- Danger Button Style -->
+                <Style x:Key="FluentButtonDanger"
+                       TargetType="Button"
+                       BasedOn="{StaticResource FluentButton}">
+                        <Setter Property="Background"
+                                Value="#FFD13438"/>
+                </Style>
+
+                <!-- Modern Navigation Button Style -->
+                <Style x:Key="NavigationButton"
+                       TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Transparent"/>
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextSecondaryBrush}"/>
+                        <Setter Property="BorderThickness"
+                                Value="0"/>
+                        <Setter Property="Padding"
+                                Value="20,15"/>
+                        <Setter Property="FontSize"
+                                Value="14"/>
+                        <Setter Property="FontWeight"
+                                Value="Medium"/>
+                        <Setter Property="HorizontalAlignment"
+                                Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Left"/>
+                        <Setter Property="Cursor"
+                                Value="Hand"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                                <Border x:Name="border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="6"
+                                                        Margin="8,2">
+                                                        <Grid>
+                                                                <Rectangle x:Name="indicator"
+                                                                           Width="4"
+                                                                           HorizontalAlignment="Left"
+                                                                           Fill="{StaticResource SystemAccentBrush}"
+                                                                           Opacity="0"
+                                                                           RadiusX="2"
+                                                                           RadiusY="2"/>
+                                                                <ContentPresenter Margin="16,0,0,0"
+                                                                                  VerticalAlignment="Center"/>
+                                                        </Grid>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="Background"
+                                                                        Value="{StaticResource HoverBrush}"/>
+                                                                <Setter Property="Foreground"
+                                                                        Value="{StaticResource TextPrimaryBrush}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="Tag"
+                                                                 Value="Selected">
+                                                                <Setter TargetName="border"
+                                                                        Property="Background"
+                                                                        Value="{StaticResource HoverBrush}"/>
+                                                                <Setter TargetName="indicator"
+                                                                        Property="Opacity"
+                                                                        Value="1"/>
+                                                                <Setter Property="Foreground"
+                                                                        Value="{StaticResource TextPrimaryBrush}"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Modern TextBox Style -->
+                <Style x:Key="FluentTextBox"
+                       TargetType="TextBox">
+                        <Setter Property="Background"
+                                Value="{StaticResource CardBackgroundBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource BorderBrush}"/>
+                        <Setter Property="BorderThickness"
+                                Value="1"/>
+                        <Setter Property="Padding"
+                                Value="8,6"/>
+                        <Setter Property="Height"
+                                Value="32"/>
+                        <Setter Property="FontSize"
+                                Value="13"/>
+                        <Setter Property="MinWidth"
+                                Value="200"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                                <Border x:Name="border"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="4">
+                                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                                      Focusable="false"
+                                                                      HorizontalScrollBarVisibility="Hidden"
+                                                                      VerticalScrollBarVisibility="Hidden"
+                                                                      Margin="{TemplateBinding Padding}"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="BorderBrush"
+                                                                        Value="{StaticResource SystemAccentBrush}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsFocused"
+                                                                 Value="True">
+                                                                <Setter TargetName="border"
+                                                                        Property="BorderBrush"
+                                                                        Value="{StaticResource SystemAccentBrush}"/>
+                                                                <Setter TargetName="border"
+                                                                        Property="BorderThickness"
+                                                                        Value="2"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Modern ComboBox Style -->
+                <Style x:Key="FluentComboBox"
+                       TargetType="ComboBox">
+                        <Setter Property="Background"
+                                Value="{StaticResource CardBackgroundBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="BorderBrush"
+                                Value="{StaticResource BorderBrush}"/>
+                        <Setter Property="BorderThickness"
+                                Value="1"/>
+                        <Setter Property="Padding"
+                                Value="8,6"/>
+                        <Setter Property="Height"
+                                Value="32"/>
+                        <Setter Property="FontSize"
+                                Value="13"/>
+                        <Setter Property="MinWidth"
+                                Value="200"/>
+                </Style>
+
+                <!-- Modern CheckBox Style -->
+                <Style x:Key="FluentCheckBox"
+                       TargetType="CheckBox">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="FontSize"
+                                Value="13"/>
+                        <Setter Property="Margin"
+                                Value="0,4"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="CheckBox">
+                                                <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border x:Name="checkBorder"
+                                                                Grid.Column="0"
+                                                                Width="16"
+                                                                Height="16"
+                                                                Background="{StaticResource CardBackgroundBrush}"
+                                                                BorderBrush="{StaticResource BorderBrush}"
+                                                                BorderThickness="1"
+                                                                CornerRadius="3"
+                                                                Margin="0,0,6,0">
+                                                                <Path x:Name="checkMark"
+                                                                      Data="M 2 5 L 5 8 L 12 1"
+                                                                      Stroke="{StaticResource TextPrimaryBrush}"
+                                                                      StrokeThickness="1.5"
+                                                                      Opacity="0"/>
+                                                        </Border>
+                                                        <ContentPresenter Grid.Column="1"
+                                                                          VerticalAlignment="Center"
+                                                                          Content="{TemplateBinding Content}"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsChecked"
+                                                                 Value="True">
+                                                                <Setter TargetName="checkBorder"
+                                                                        Property="Background"
+                                                                        Value="{StaticResource SystemAccentBrush}"/>
+                                                                <Setter TargetName="checkBorder"
+                                                                        Property="BorderBrush"
+                                                                        Value="{StaticResource SystemAccentBrush}"/>
+                                                                <Setter TargetName="checkMark"
+                                                                        Property="Opacity"
+                                                                        Value="1"/>
+                                                                <Setter TargetName="checkMark"
+                                                                        Property="Stroke"
+                                                                        Value="White"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                                <Setter TargetName="checkBorder"
+                                                                        Property="BorderBrush"
+                                                                        Value="{StaticResource SystemAccentBrush}"/>
+                                                        </Trigger>
+                                                </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Progress Bar Style -->
+                <Style x:Key="FluentProgressBar"
+                       TargetType="ProgressBar">
+                        <Setter Property="Background"
+                                Value="{StaticResource BorderBrush}"/>
+                        <Setter Property="Foreground"
+                                Value="{StaticResource SystemAccentBrush}"/>
+                        <Setter Property="Height"
+                                Value="4"/>
+                        <Setter Property="Template">
+                                <Setter.Value>
+                                        <ControlTemplate TargetType="ProgressBar">
+                                                <Grid>
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="2"/>
+                                                        <Rectangle x:Name="PART_Track"
+                                                                   Fill="{TemplateBinding Background}"
+                                                                   RadiusX="2"
+                                                                   RadiusY="2"/>
+                                                        <Grid x:Name="PART_Indicator"
+                                                              HorizontalAlignment="Left"
+                                                              ClipToBounds="True">
+                                                                <Rectangle x:Name="Indicator"
+                                                                           Fill="{TemplateBinding Foreground}"
+                                                                           RadiusX="2"
+                                                                           RadiusY="2"/>
+                                                        </Grid>
+                                                </Grid>
+                                        </ControlTemplate>
+                                </Setter.Value>
+                        </Setter>
+                </Style>
+
+                <!-- Header Text Style -->
+                <Style x:Key="HeaderText"
+                       TargetType="TextBlock">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="FontSize"
+                                Value="24"/>
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+                        <Setter Property="Margin"
+                                Value="0,0,0,8"/>
+                </Style>
+
+                <!-- Subtitle Text Style -->
+                <Style x:Key="SubtitleText"
+                       TargetType="TextBlock">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextSecondaryBrush}"/>
+                        <Setter Property="FontSize"
+                                Value="14"/>
+                        <Setter Property="Margin"
+                                Value="0,0,0,16"/>
+                </Style>
+
+                <!-- Section Header Style -->
+                <Style x:Key="SectionHeader"
+                       TargetType="TextBlock">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="FontSize"
+                                Value="14"/>
+                        <Setter Property="FontWeight"
+                                Value="SemiBold"/>
+                        <Setter Property="Margin"
+                                Value="0,0,0,6"/>
+                </Style>
+
+                <!-- Label Style -->
+                <Style x:Key="FluentLabel"
+                       TargetType="Label">
+                        <Setter Property="Foreground"
+                                Value="{StaticResource TextPrimaryBrush}"/>
+                        <Setter Property="FontSize"
+                                Value="14"/>
+                        <Setter Property="Margin"
+                                Value="0,0,0,4"/>
+                </Style>
+        </Window.Resources>
+
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- App Header -->
+                <Border Grid.Row="0"
+                        Background="{StaticResource SurfaceBackgroundBrush}"
+                        Padding="20,15">
+                        <Grid>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- App Icon and Title -->
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                        <!-- Icon placeholder -->
+                                        <Border Width="32"
+                                                Height="32"
+                                                Background="{StaticResource SystemAccentBrush}"
+                                                CornerRadius="6"
+                                                Margin="0,0,12,0">
+                                                <TextBlock Text="W"
+                                                           FontSize="18"
+                                                           FontWeight="Bold"
+                                                           Foreground="White"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                        </Border>
+                                        <StackPanel>
+                                                <TextBlock Text="Windows Deployment and Configuration Assistant"
+                                                           FontSize="16"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                <TextBlock Text="Streamline your Windows deployments and configurations"
+                                                           FontSize="12"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                </StackPanel>
+                        </Grid>
+                </Border>
+
+                <!-- Main Content Area -->
+                <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Navigation Sidebar -->
+                        <Border Grid.Column="0"
+                                Background="{StaticResource SurfaceBackgroundBrush}"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                BorderThickness="0,0,1,0">
+                                <StackPanel Margin="16,24">
+                                        <TextBlock Text="Navigation"
+                                                   Style="{StaticResource SectionHeader}"
+                                                   Margin="8,0,0,16"/>
+
+                                        <Button Name="NavDebloat"
+                                                Content="Debloat"
+                                                Style="{StaticResource NavigationButton}"
+                                                Tag="Selected"/>
+                                        <Button Name="NavApplications"
+                                                Content="Applications"
+                                                Style="{StaticResource NavigationButton}"/>
+                                        <Button Name="NavSystemSetup"
+                                                Content="System Setup"
+                                                Style="{StaticResource NavigationButton}"/>
+                                        <Button Name="NavTroubleshooting"
+                                                Content="Troubleshooting"
+                                                Style="{StaticResource NavigationButton}"/>
+                                        <Button Name="NavUpdates"
+                                                Content="Updates"
+                                                Style="{StaticResource NavigationButton}"/>
+                                        <Button Name="NavCloning"
+                                                Content="Cloning"
+                                                Style="{StaticResource NavigationButton}"/>
+
+                                        <Separator Margin="8,20"
+                                                   Background="{StaticResource BorderBrush}"/>
+
+                                        <Button Name="NavAbout"
+                                                Content="About"
+                                                Style="{StaticResource NavigationButton}"/>
+                                </StackPanel>
+                        </Border>
+
+                        <!-- Content Area -->
+                        <Grid Grid.Column="1"
+                              Name="ContentArea"
+                              Background="{StaticResource LayerBackgroundBrush}">
+
+                                <!-- Applications Content -->
+                                <Grid Name="ApplicationsContent"
+                                      Visibility="Visible">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="20">
+                                                <StackPanel>
+                                                        <TextBlock Text="Application Management"
+                                                                   Style="{StaticResource HeaderText}"/>
+                                                        <TextBlock Text="Install and manage applications using WinGet package manager"
+                                                                   Style="{StaticResource SubtitleText}"/>
+
+                                                        <!-- Quick Actions -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Quick Actions"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <StackPanel Orientation="Horizontal"
+                                                                                    Margin="0,4,0,0">
+                                                                                <Button Name="WPFSelectAllApps"
+                                                                                        Content="Select All"
+                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
+                                                                                <Button Name="WPFDeselectAllApps"
+                                                                                        Content="Deselect All"
+                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
+                                                                                <Button Name="WPFInstallSelectedApps"
+                                                                                        Content="Install Selected"
+                                                                                        Style="{StaticResource FluentButtonSuccess}"/>
+                                                                                <Button Name="WPFListAppUpdate"
+                                                                                        Content="List All Updates"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                                <Button Name="WPFUpdateApps"
+                                                                                        Content="Update All Apps"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                        </StackPanel>
+                                                                </StackPanel>
+                                                        </Border>
+
+                                                        <!-- Application Categories -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Available Applications"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <ScrollViewer Name="ApplicationsScrollViewer"
+                                                                                      Height="350"
+                                                                                      VerticalScrollBarVisibility="Auto">
+                                                                                <StackPanel Name="WPFApplicationsPanel"/>
+                                                                        </ScrollViewer>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+
+                                <!-- System Setup Content -->
+                                <Grid Name="SystemSetupContent"
+                                      Visibility="Collapsed">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="20">
+                                                <StackPanel>
+                                                        <TextBlock Text="System Configuration"
+                                                                   Style="{StaticResource HeaderText}"/>
+                                                        <TextBlock Text="Configure network settings, remote access, and server roles"
+                                                                   Style="{StaticResource SubtitleText}"/>
+
+                                                        <!-- Network Configuration -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Network Configuration"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <Grid Margin="0,4,0,0">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                </Grid.RowDefinitions>
+
+                                                                                <!-- Network Configuration Mode -->
+                                                                                <Label Grid.Row="0"
+                                                                                       Grid.ColumnSpan="2"
+                                                                                       Content="Network Configuration Mode"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="0,0,0,4"/>
+                                                                                <StackPanel Grid.Row="1"
+                                                                                            Grid.ColumnSpan="2"
+                                                                                            Orientation="Horizontal"
+                                                                                            Margin="0,0,0,16">
+                                                                                        <RadioButton Name="WPFStaticIP"
+                                                                                                     Content="Static IP"
+                                                                                                     IsChecked="True"
+                                                                                                     Margin="0,0,24,0"
+                                                                                                     FontSize="14"
+                                                                                                     Foreground="White"/>
+                                                                                        <RadioButton Name="WPFDHCP"
+                                                                                                     Content="DHCP"
+                                                                                                     Margin="0,0,0,0"
+                                                                                                     FontSize="14"
+                                                                                                     Foreground="White"/>
+                                                                                </StackPanel>
+
+                                                                                <!-- IP Address -->
+                                                                                <Label Grid.Row="2"
+                                                                                       Grid.Column="0"
+                                                                                       Content="IP Address"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="0,0,8,4"/>
+                                                                                <TextBox Grid.Row="3"
+                                                                                         Grid.Column="0"
+                                                                                         Name="WPFNetworkIP"
+                                                                                         Margin="0,0,8,12"
+                                                                                         FontSize="14"
+                                                                                         Foreground="#000000"
+                                                                                         Background="#FFFFFF"
+                                                                                         BorderBrush="#CCCCCC"
+                                                                                         BorderThickness="2"
+                                                                                         Padding="8,6"
+                                                                                         MinHeight="32"
+                                                                                         CaretBrush="Black"
+                                                                                         SelectionBrush="LightBlue"/>
+
+                                                                                <!-- Subnet Mask -->
+                                                                                <Label Grid.Row="2"
+                                                                                       Grid.Column="1"
+                                                                                       Content="Subnet Mask"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="8,0,0,4"/>
+                                                                                <TextBox Grid.Row="3"
+                                                                                         Grid.Column="1"
+                                                                                         Name="WPFNetworkSubnet"
+                                                                                         Margin="8,0,0,12"
+                                                                                         FontSize="14"
+                                                                                         Foreground="#000000"
+                                                                                         Background="#FFFFFF"
+                                                                                         BorderBrush="#CCCCCC"
+                                                                                         BorderThickness="2"
+                                                                                         Padding="8,6"
+                                                                                         MinHeight="32"
+                                                                                         CaretBrush="Black"
+                                                                                         SelectionBrush="LightBlue"/>
+
+                                                                                <!-- Gateway -->
+                                                                                <Label Grid.Row="4"
+                                                                                       Grid.Column="0"
+                                                                                       Content="Gateway"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="0,0,8,4"/>
+                                                                                <TextBox Grid.Row="5"
+                                                                                         Grid.Column="0"
+                                                                                         Name="WPFNetworkGateway"
+                                                                                         Margin="0,0,8,12"
+                                                                                         FontSize="14"
+                                                                                         Foreground="#000000"
+                                                                                         Background="#FFFFFF"
+                                                                                         BorderBrush="#CCCCCC"
+                                                                                         BorderThickness="2"
+                                                                                         Padding="8,6"
+                                                                                         MinHeight="32"
+                                                                                         CaretBrush="Black"
+                                                                                         SelectionBrush="LightBlue"/>
+
+                                                                                <!-- DNS Server -->
+                                                                                <Label Grid.Row="4"
+                                                                                       Grid.Column="1"
+                                                                                       Content="DNS Server"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="8,0,0,4"/>
+                                                                                <TextBox Grid.Row="5"
+                                                                                         Grid.Column="1"
+                                                                                         Name="WPFNetworkDNS"
+                                                                                         Margin="8,0,0,12"
+                                                                                         FontSize="14"
+                                                                                         Foreground="#000000"
+                                                                                         Background="#FFFFFF"
+                                                                                         BorderBrush="#CCCCCC"
+                                                                                         BorderThickness="2"
+                                                                                         Padding="8,6"
+                                                                                         MinHeight="32"
+                                                                                         CaretBrush="Black"
+                                                                                         SelectionBrush="LightBlue"/>
+
+                                                                                <!-- Alternative DNS Server -->
+                                                                                <Label Grid.Row="6"
+                                                                                       Grid.Column="0"
+                                                                                       Content="Alternative DNS"
+                                                                                       Style="{StaticResource FluentLabel}"
+                                                                                       Margin="0,0,8,4"/>
+                                                                                <TextBox Grid.Row="7"
+                                                                                         Grid.Column="0"
+                                                                                         Name="WPFNetworkDNSAlt"
+                                                                                         Margin="0,0,8,12"
+                                                                                         FontSize="14"
+                                                                                         Foreground="#000000"
+                                                                                         Background="#FFFFFF"
+                                                                                         BorderBrush="#CCCCCC"
+                                                                                         BorderThickness="2"
+                                                                                         Padding="8,6"
+                                                                                         MinHeight="32"
+                                                                                         CaretBrush="Black"
+                                                                                         SelectionBrush="LightBlue"/>
+
+                                                                                <!-- IPv6 Option -->
+                                                                                <CheckBox Grid.Row="7"
+                                                                                          Grid.Column="1"
+                                                                                          Name="WPFDisableIPv6"
+                                                                                          Content="Disable IPv6"
+                                                                                          VerticalAlignment="Center"
+                                                                                          Margin="8,0,0,12"
+                                                                                          FontSize="14"
+                                                                                          Foreground="White"/>
+
+                                                                                <!-- Apply Button -->
+                                                                                <Button Grid.Row="8"
+                                                                                        Grid.ColumnSpan="2"
+                                                                                        Name="WPFConfigureNetwork"
+                                                                                        Content="Apply Network Configuration"
+                                                                                        Style="{StaticResource FluentButton}"
+                                                                                        HorizontalAlignment="Left"
+                                                                                        Margin="0,4,0,0"/>
+                                                                        </Grid>
+                                                                </StackPanel>
+                                                        </Border>
+
+                                                        <!-- Remote Access -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Remote Access"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <CheckBox Name="WPFRDPNetworkAuth"
+                                                                                  Content="Require Network Level Authentication"
+                                                                                  Style="{StaticResource FluentCheckBox}"
+                                                                                  IsChecked="True"
+                                                                                  Margin="0,4,0,8"/>
+                                                                        <Button Name="WPFEnableRDP"
+                                                                                Content="Enable Remote Desktop"
+                                                                                Style="{StaticResource FluentButton}"
+                                                                                HorizontalAlignment="Left"/>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+
+                                <!-- Troubleshooting Content -->
+                                <Grid Name="TroubleshootingContent"
+                                      Visibility="Collapsed">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="24">
+                                                <StackPanel>
+                                                        <TextBlock Text="System Diagnostics"
+                                                                   Style="{StaticResource HeaderText}"/>
+                                                        <TextBlock Text="Run system diagnostics and troubleshooting tools"
+                                                                   Style="{StaticResource SubtitleText}"/>
+
+                                                        <!-- System Diagnostics -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="System Health Checks"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <WrapPanel>
+                                                                                <Button Name="WPFRunDISM"
+                                                                                        Content="Run DISM Scan"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                                <Button Name="WPFRunSFC"
+                                                                                        Content="Run SFC Scan"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                                <Button Name="WPFRunCHKDSK"
+                                                                                        Content="Run CHKDSK"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                                <Button Name="WPFRunDiagnostics"
+                                                                                        Content="Run All Diagnostics"
+                                                                                        Style="{StaticResource FluentButtonWarning}"/>
+                                                                        </WrapPanel>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+
+                                <!-- Updates Content - Angepasste Version -->
+                                <Grid Name="UpdatesContent"
+                                      Visibility="Collapsed">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="24">
+                                                <StackPanel>
+                                                        <TextBlock Text="Update Management"
+                                                                   Style="{StaticResource HeaderText}"/>
+                                                        <TextBlock Text="Manage Windows Updates and application updates"
+                                                                   Style="{StaticResource SubtitleText}"/>
+
+
+                                                      
+
+                                                        <!-- Reboot Management -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Reboot Management"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <TextBlock Text="Manage system restarts and pending reboot status"
+                                                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                   Margin="0,0,0,12"/>
+                                                                        <WrapPanel>
+                                                                                <Button Name="WPFCheckPendingReboot"
+                                                                                        Content="Check Pending Reboot"
+                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
+                                                                                <Button Name="WPFScheduleReboot"
+                                                                                        Content="Schedule Restart"
+                                                                                        Style="{StaticResource FluentButtonWarning}"/>
+                                                                                <Button Name="WPFCancelReboot"
+                                                                                        Content="Cancel Scheduled Restart"
+                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
+                                                                        </WrapPanel>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+
+                                <!-- Cloning Content -->
+                                <Grid Name="CloningContent"
+                                      Visibility="Collapsed">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="24">
+                                                <StackPanel>
+                                                        <!-- Cleanup Options -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="Pre-Clone Cleanup"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+                                                                        <TextBlock Text="Clean temporary files and optimize system for imaging"
+                                                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                   Margin="0,0,0,16"/>
+
+                                                                        <StackPanel Orientation="Horizontal"
+                                                                                    Margin="0,0,0,20">
+                                                                                <CheckBox Name="WPFCleanupTemp"
+                                                                                          Content="Clear Temp Files"
+                                                                                          Style="{StaticResource FluentCheckBox}"
+                                                                                          IsChecked="True"
+                                                                                          Margin="0,0,24,0"/>
+                                                                                <CheckBox Name="WPFCleanupLogs"
+                                                                                          Content="Clear Event Logs"
+                                                                                          Style="{StaticResource FluentCheckBox}"
+                                                                                          IsChecked="True"
+                                                                                          Margin="0,0,24,0"/>
+                                                                                <CheckBox Name="WPFCleanupRecycle"
+                                                                                          Content="Empty Recycle Bin"
+                                                                                          Style="{StaticResource FluentCheckBox}"
+                                                                                          IsChecked="True"/>
+                                                                        </StackPanel>
+
+                                                                        <Button Name="WPFRunCleanup"
+                                                                                Content="Run System Cleanup"
+                                                                                Style="{StaticResource FluentButtonSuccess}"
+                                                                                HorizontalAlignment="Left"/>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+
+                                <!-- About Content -->
+                                <Grid Name="AboutContent"
+                                      Visibility="Collapsed">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      Margin="24">
+                                                <StackPanel>
+                                                        <TextBlock Text="About WDCA"
+                                                                   Style="{StaticResource HeaderText}"/>
+
+                                                        <!-- Application Info -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <Grid>
+                                                                                <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                </Grid.ColumnDefinitions>
+
+                                                                                <!-- App Icon -->
+                                                                                <Border Grid.Column="0"
+                                                                                        Width="64"
+                                                                                        Height="64"
+                                                                                        Background="{StaticResource SystemAccentBrush}"
+                                                                                        CornerRadius="12"
+                                                                                        Margin="0,0,20,0">
+                                                                                        <TextBlock Text="W"
+                                                                                                   FontSize="32"
+                                                                                                   FontWeight="Bold"
+                                                                                                   Foreground="White"
+                                                                                                   HorizontalAlignment="Center"
+                                                                                                   VerticalAlignment="Center"/>
+                                                                                </Border>
+
+                                                                                <!-- App Details -->
+                                                                                <StackPanel Grid.Column="1"
+                                                                                            VerticalAlignment="Center">
+                                                                                        <TextBlock Text="Windows Deployment and Configuration Assistant"
+                                                                                                   FontSize="20"
+                                                                                                   FontWeight="SemiBold"
+                                                                                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                                                                                   Margin="0,0,0,4"/>
+                                                                                        <TextBlock Text="Version 25.01.01"
+                                                                                                   FontSize="14"
+                                                                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                                   Margin="0,0,0,4"/>
+                                                                                        <TextBlock Text="© 2025 Tobayashi-san. Licensed under MIT License."
+                                                                                                   FontSize="12"
+                                                                                                   Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                                                </StackPanel>
+                                                                        </Grid>
+
+                                                                        <Separator Margin="0,20"
+                                                                                   Background="{StaticResource BorderBrush}"/>
+
+                                                                        <TextBlock Text="A comprehensive PowerShell-based utility with modern WPF interface for streamlining Windows system deployment, configuration, troubleshooting, and cloning operations."
+                                                                                   TextWrapping="Wrap"
+                                                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                   Margin="0,0,0,16"/>
+
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                                <Button Name="ViewWiki"
+                                                                                        Content="Documentation"
+                                                                                        Style="{StaticResource FluentButton}"/>
+                                                                                <Button Name="ReportIssue"
+                                                                                        Content="Report Issue"
+                                                                                        Style="{StaticResource FluentButtonSecondary}"/>
+                                                                        </StackPanel>
+                                                                </StackPanel>
+                                                        </Border>
+
+                                                        <!-- System Info -->
+                                                        <Border Style="{StaticResource ModernCard}">
+                                                                <StackPanel>
+                                                                        <TextBlock Text="System Information"
+                                                                                   Style="{StaticResource SectionHeader}"/>
+
+                                                                        <Grid Margin="0,16,0,0">
+                                                                                <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="150"/>
+                                                                                        <ColumnDefinition Width="*"/>
+                                                                                </Grid.ColumnDefinitions>
+                                                                                <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                        <RowDefinition Height="Auto"/>
+                                                                                </Grid.RowDefinitions>
+
+                                                                                <TextBlock Grid.Row="0"
+                                                                                           Grid.Column="0"
+                                                                                           Text="Computer Name:"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+                                                                                <TextBlock Grid.Row="0"
+                                                                                           Grid.Column="1"
+                                                                                           Name="SystemComputerName"
+                                                                                           Text="COMPUTER-NAME"
+                                                                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+
+                                                                                <TextBlock Grid.Row="1"
+                                                                                           Grid.Column="0"
+                                                                                           Text="PowerShell Version:"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+                                                                                <TextBlock Grid.Row="1"
+                                                                                           Grid.Column="1"
+                                                                                           Name="PowerShellVersion"
+                                                                                           Text="5.1.22621.2506"
+                                                                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+
+                                                                                <TextBlock Grid.Row="2"
+                                                                                           Grid.Column="0"
+                                                                                           Text="Admin Rights:"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+                                                                                <TextBlock Grid.Row="2"
+                                                                                           Grid.Column="1"
+                                                                                           Name="AdminStatus"
+                                                                                           Text="Yes"
+                                                                                           Foreground="#FF107C10"
+                                                                                           Margin="0,0,0,8"/>
+
+                                                                                <TextBlock Grid.Row="3"
+                                                                                           Grid.Column="0"
+                                                                                           Text="WinGet Available:"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                                                           Margin="0,0,0,8"/>
+                                                                                <TextBlock Grid.Row="3"
+                                                                                           Grid.Column="1"
+                                                                                           Name="WinGetStatus"
+                                                                                           Text="Yes"
+                                                                                           Foreground="#FF107C10"
+                                                                                           Margin="0,0,0,8"/>
+
+                                                                                <TextBlock Grid.Row="4"
+                                                                                           Grid.Column="0"
+                                                                                           Text="Log File:"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"/>
+                                                                                <TextBlock Grid.Row="4"
+                                                                                           Grid.Column="1"
+                                                                                           Name="LogFilePath"
+                                                                                           Text="C:\Temp\WDCA_20250101_120000.log"
+                                                                                           Foreground="{StaticResource TextSecondaryBrush}"/>
+                                                                        </Grid>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </StackPanel>
+                                        </ScrollViewer>
+                                </Grid>
+                        </Grid>
+                </Grid>
+
+                <!-- Progress Bar -->
+                <ProgressBar Grid.Row="2"
+                             Name="WPFProgressBar"
+                             Style="{StaticResource FluentProgressBar}"
+                             Margin="24,0"/>
+
+                <!-- Status Bar -->
+                <Border Grid.Row="3"
+                        Background="{StaticResource SurfaceBackgroundBrush}"
+                        Height="48">
+                        <Grid Margin="24,0">
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                        <Ellipse Width="8"
+                                                 Height="8"
+                                                 Fill="#FF107C10"
+                                                 Margin="0,0,8,0"/>
+                                        <TextBlock Name="WPFStatusText"
+                                                   Text="Ready - Windows Deployment and Configuration Assistant"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                   VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="v"
+                                                   Foreground="{StaticResource TextTertiaryBrush}"/>
+                                        <TextBlock Name="WPFVersionText"
+                                                   Text="25.01.01"
+                                                   Foreground="{StaticResource TextTertiaryBrush}"
+                                                   Margin="2,0,0,0"/>
+                                </StackPanel>
+                        </Grid>
+                </Border>
+        </Grid>
+</Window>
