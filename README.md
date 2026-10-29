@@ -1,5 +1,8 @@
 # Windows Deployment & Configuration Assistant (WDCA)
 
+> [!NOTE]
+> This project is archived and no longer maintained. The code remains available for reference.
+
 A modern PowerShell-based utility with WPF interface for streamlining Windows system deployment, configuration, troubleshooting, and imaging operations. Inspired by [WinUtil](https://github.com/ChrisTitusTech/winutil) architecture with enhanced enterprise features.
 
 ## 🚀 Quick Start
